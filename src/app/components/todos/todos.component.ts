@@ -31,11 +31,17 @@ export class TodosComponent implements OnInit {
 
   addTodo(todo: Todo) {
     // add on ui
-    // this.todos.push(todo);
+    const newTodo = { ...todo };
+    newTodo.id = this.todos[this.todos.length-1].id + 1;
+    this.todos.push(newTodo);
 
-
+    // add on server
     this.todoService.addTodo(todo).subscribe(res => {
-      this.todos.push(todo);
+      // const newTodo = {
+      //   ...todo,
+      //   id: this.todos[this.todos.length - 1].id + 1,
+      // }
+      // this.todos.push(newTodo);
       console.log('res from post:', res);
     })
   }
